@@ -1,0 +1,36 @@
+ typedef struct IO_REG_WR8_Fake { 
+     uint32_t arg0_val; uint32_t arg0_history[(50u)]; 
+     uint8_t arg1_val; uint8_t arg1_history[(50u)]; 
+     unsigned int call_count; unsigned int arg_history_len; unsigned int arg_histories_dropped; 
+     int custom_fake_seq_len; int custom_fake_seq_idx; 
+     void(*custom_fake)(uint32_t arg0, uint8_t arg1); 
+     void(**custom_fake_seq)(uint32_t arg0, uint8_t arg1); 
+} IO_REG_WR8_Fake; 
+     extern IO_REG_WR8_Fake IO_REG_WR8_fake; void IO_REG_WR8_reset(void); 
+     void IO_REG_WR8(uint32_t arg0, uint8_t arg1); 
+     IO_REG_WR8_Fake IO_REG_WR8_fake; 
+     
+     void IO_REG_WR8(uint32_t arg0, uint8_t arg1){ 
+         memcpy((void*)&IO_REG_WR8_fake.arg0_val, (void*)&arg0, sizeof(arg0));; 
+         memcpy((void*)&IO_REG_WR8_fake.arg1_val, (void*)&arg1, sizeof(arg1));; 
+         if(IO_REG_WR8_fake.call_count < (50u)){ 
+             memcpy((void*)&IO_REG_WR8_fake.arg0_history[IO_REG_WR8_fake.call_count], (void*)&arg0, sizeof(arg0));; 
+             memcpy((void*)&IO_REG_WR8_fake.arg1_history[IO_REG_WR8_fake.call_count], (void*)&arg1, sizeof(arg1));; 
+        } else{ 
+            IO_REG_WR8_fake.arg_histories_dropped++; 
+        } 
+        IO_REG_WR8_fake.call_count++; 
+        if(fff.call_history_idx < (50u)) 
+            fff.call_history[fff.call_history_idx++] = (fff_function_t)IO_REG_WR8;; 
+        if (IO_REG_WR8_fake.custom_fake_seq_len){ 
+            if (IO_REG_WR8_fake.custom_fake_seq_idx < IO_REG_WR8_fake.custom_fake_seq_len){ 
+                IO_REG_WR8_fake.custom_fake_seq[IO_REG_WR8_fake.custom_fake_seq_idx++](arg0, arg1); 
+            } else{ 
+                IO_REG_WR8_fake.custom_fake_seq[IO_REG_WR8_fake.custom_fake_seq_len-1](arg0, arg1); 
+            } 
+        } if (IO_REG_WR8_fake.custom_fake) IO_REG_WR8_fake.custom_fake(arg0, arg1); 
+    } 
+    void IO_REG_WR8_reset(void){ 
+        memset(&IO_REG_WR8_fake, 0, sizeof(IO_REG_WR8_fake)); 
+        IO_REG_WR8_fake.arg_history_len = (50u); 
+    } ;

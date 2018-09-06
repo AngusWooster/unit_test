@@ -1,0 +1,11 @@
+#ifndef _PLATFORM_REG_H_
+#define _PLATFORM_REG_H_
+
+#define SENSOR_OUTPUT_REG 0x0001
+#define SENSOR_INPUT_REG  0X0002
+#define SENSOR_INIT_REG     0x0003
+#define SENSOR_VERSION_REG 0x0004
+
+#define SENSOR_VERSION_NUM 0xa5
+
+#endif
